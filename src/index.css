@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply font-sans text-navy antialiased bg-white;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-forest-700 leading-tight;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-leaf;
+  }
+}
+
+@layer components {
+  /* Consistent section padding */
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+
+  .section-pad-sm {
+    @apply py-10 md:py-16;
+  }
+
+  /* Container */
+  .container-xl {
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-content;
+  }
+
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-forest-700 text-white 
+           px-6 py-3 rounded-lg font-medium text-sm
+           hover:bg-forest-600 active:scale-95
+           transition-all duration-200 whitespace-nowrap;
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-forest-700 text-forest-700
+           px-6 py-3 rounded-lg font-medium text-sm
+           hover:bg-forest-700 hover:text-white active:scale-95
+           transition-all duration-200 whitespace-nowrap;
+  }
+
+  /* WhatsApp green button */
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 bg-[#25D366] text-white
+           px-6 py-3 rounded-lg font-medium text-sm
+           hover:bg-[#1ebe5d] active:scale-95
+           transition-all duration-200 whitespace-nowrap;
+  }
+
+  /* Ghost / text button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-forest-700 font-medium text-sm
+           hover:text-leaf-dark underline-offset-4 hover:underline
+           transition-all duration-200;
+  }
+
+  /* Product card */
+  .card {
+    @apply bg-white rounded-card shadow-card hover:shadow-card-hover 
+           transition-shadow duration-300 overflow-hidden;
+  }
+
+  /* Section label (eyebrow text) */
+  .eyebrow {
+    @apply text-leaf-dark uppercase tracking-widest text-xs font-semibold;
+  }
+
+  /* Rich text inside product descriptions */
+  .prose-vitalink {
+    @apply text-muted leading-relaxed;
+  }
+
+  .prose-vitalink p {
+    @apply mb-4;
+  }
+
+  .prose-vitalink ul {
+    @apply list-none space-y-2 mb-4;
+  }
+
+  /* Input field */
+  .input-field {
+    @apply w-full border border-gray-200 rounded-lg px-4 py-3
+           text-navy placeholder-gray-400 text-sm
+           focus:outline-none focus:ring-2 focus:ring-leaf focus:border-transparent
+           transition-all duration-200;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-block text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .badge-green {
+    @apply badge bg-mint text-forest-700;
+  }
+
+  .badge-gold {
+    @apply badge bg-amber-100 text-amber-800;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-gray-100 my-8;
+  }
+}
+
+@layer utilities {
+  /* Smooth underline animation */
+  .underline-grow {
+    @apply relative;
+  }
+  .underline-grow::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-leaf transition-all duration-300;
+  }
+  .underline-grow:hover::after {
+    @apply w-full;
+  }
+
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #74C69D; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #40916C; }

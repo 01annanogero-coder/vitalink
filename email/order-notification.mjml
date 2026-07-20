@@ -1,0 +1,150 @@
+<mjml>
+  <mj-head>
+    <mj-title>New Order — VitaLink</mj-title>
+    <mj-preview>New order received from {{customer_name}} — KES {{order_total}}</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="DM Sans, Arial, sans-serif" />
+      <mj-text font-size="15px" line-height="1.7" color="#2a2a27" />
+      <mj-section background-color="#ffffff" padding="0" />
+    </mj-attributes>
+    <mj-style>
+      .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #9b9a94; }
+      .value { font-size: 15px; font-weight: 500; color: #161614; }
+      .divider { border-top: 1px solid #f0efeb; }
+    </mj-style>
+  </mj-head>
+
+  <mj-body background-color="#f8f8f6">
+
+    <!-- Top accent bar -->
+    <mj-section background-color="#12a06a" padding="0">
+      <mj-column>
+        <mj-text padding="4px 0" font-size="1px" color="#12a06a">.</mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Header -->
+    <mj-section background-color="#ffffff" padding="32px 24px 24px">
+      <mj-column>
+        <mj-text font-size="22px" font-weight="700" color="#161614" padding-bottom="4px">
+          VitaLink
+        </mj-text>
+        <mj-text font-size="12px" color="#9b9a94" padding-top="0" padding-bottom="0">
+          Authorised NeoLife Promoter · Kenya
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Alert banner -->
+    <mj-section background-color="#e8faf3" padding="20px 24px">
+      <mj-column>
+        <mj-text font-size="18px" font-weight="600" color="#0c7d52" padding-bottom="4px">
+          New order received
+        </mj-text>
+        <mj-text font-size="14px" color="#12a06a" padding-top="0">
+          A customer just placed an order on vitalink.fyi. Review the details below and reach out to confirm.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Customer details -->
+    <mj-section background-color="#ffffff" padding="24px 24px 0">
+      <mj-column>
+        <mj-text css-class="label" padding-bottom="16px">Customer information</mj-text>
+
+        <mj-table font-size="14px" color="#2a2a27" cellpadding="8px 0">
+          <tr>
+            <td style="color:#9b9a94; font-size:12px; width:120px; padding-bottom:12px;">Full name</td>
+            <td style="font-weight:500; padding-bottom:12px;">{{customer_name}}</td>
+          </tr>
+          <tr>
+            <td style="color:#9b9a94; font-size:12px; padding-bottom:12px;">Phone</td>
+            <td style="font-weight:500; padding-bottom:12px;">{{customer_phone}}</td>
+          </tr>
+          <tr>
+            <td style="color:#9b9a94; font-size:12px; padding-bottom:12px;">Location</td>
+            <td style="font-weight:500; padding-bottom:12px;">{{customer_location}}</td>
+          </tr>
+          <tr>
+            <td style="color:#9b9a94; font-size:12px; padding-bottom:12px;">Delivery method</td>
+            <td style="font-weight:500; padding-bottom:12px;">{{shipping_method}}</td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section background-color="#ffffff" padding="0 24px">
+      <mj-column>
+        <mj-divider border-color="#f0efeb" border-width="1px" padding="16px 0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Order summary -->
+    <mj-section background-color="#ffffff" padding="0 24px 24px">
+      <mj-column>
+        <mj-text css-class="label" padding-bottom="16px">Order summary</mj-text>
+        <mj-text font-size="14px" color="#2a2a27" padding-top="0">
+          <pre style="font-family: DM Sans, Arial, sans-serif; font-size:14px; line-height:1.8; white-space:pre-wrap; margin:0;">{{order_summary}}</pre>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Total -->
+    <mj-section background-color="#f8f8f6" padding="20px 24px">
+      <mj-column>
+        <mj-table font-size="15px">
+          <tr>
+            <td style="color:#5c5b56;">Order total (incl. shipping)</td>
+            <td style="font-size:20px; font-weight:700; color:#12a06a; text-align:right;">{{order_total}}</td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+    <!-- Action prompt -->
+    <mj-section background-color="#ffffff" padding="24px">
+      <mj-column>
+        <mj-text font-size="14px" color="#5c5b56" padding-bottom="20px">
+          Call or WhatsApp the customer to confirm their order, arrange payment, and schedule delivery.
+        </mj-text>
+        <mj-button
+          background-color="#12a06a"
+          color="#ffffff"
+          font-size="15px"
+          font-weight="500"
+          border-radius="10px"
+          padding="14px 28px"
+          href="https://wa.me/{{customer_phone}}?text=Hi%20{{customer_name}}%2C%20this%20is%20VitaLink.%20We%20received%20your%20order%20and%20would%20like%20to%20confirm%20the%20details."
+        >
+          Reply on WhatsApp
+        </mj-button>
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section background-color="#ffffff" padding="0 24px">
+      <mj-column>
+        <mj-divider border-color="#f0efeb" border-width="1px" padding="0" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section background-color="#ffffff" padding="20px 24px 32px">
+      <mj-column>
+        <mj-text font-size="12px" color="#9b9a94" line-height="1.8">
+          This email was sent automatically when a customer placed an order on vitalink.fyi.<br/>
+          VitaLink · Authorised NeoLife Independent Promoter · Kenya
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Bottom accent bar -->
+    <mj-section background-color="#12a06a" padding="0">
+      <mj-column>
+        <mj-text padding="4px 0" font-size="1px" color="#12a06a">.</mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>
