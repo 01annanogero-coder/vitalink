@@ -6,10 +6,11 @@
 // WhatsApp (country code + number, no + or spaces)
 export const WHATSAPP_NUMBER = "254143276663";
 
-// EmailJS — fill these after setting up your EmailJS account
-export const EMAILJS_PUBLIC_KEY        = "YOUR_PUBLIC_KEY";
-export const EMAILJS_SERVICE_ID        = "YOUR_SERVICE_ID";
-export const EMAILJS_ORDER_TEMPLATE    = "YOUR_ORDER_TEMPLATE_ID"; // Cart checkout order notification — see /email/order-notification.html
+// EmailJS — public key & service ID are shared across your whole EmailJS account (from the old project's order flow).
+// Contact/Distributor/Club templates weren't wired to EmailJS in the old project (WhatsApp-only), so those stay placeholders until you create templates for them.
+export const EMAILJS_PUBLIC_KEY        = "gMPjngKnm0diVJ8iV";
+export const EMAILJS_SERVICE_ID        = "service_ltgs5dv";
+export const EMAILJS_ORDER_TEMPLATE    = "template_t4x2459"; // Cart checkout order notification — see /email/order-notification.html
 export const EMAILJS_CONTACT_TEMPLATE  = "YOUR_CONTACT_TEMPLATE_ID";
 export const EMAILJS_DISTRIBUTOR_TEMPLATE = "YOUR_DISTRIBUTOR_TEMPLATE_ID";
 export const EMAILJS_CLUB_TEMPLATE     = "YOUR_CLUB_TEMPLATE_ID";
