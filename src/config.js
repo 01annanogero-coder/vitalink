@@ -20,6 +20,9 @@ export const SITE_URL = "https://vitalink.fyi";
 export const SITE_NAME = "Vitalink";
 export const DISTRIBUTOR_EMAIL = "vitalink@example.com"; // update with real email
 
+// Distributor registration payment backend (Supabase Edge Functions)
+export const DISTRIBUTOR_FUNCTIONS_URL = "https://hpypxmmcfxyhfvadxyxl.supabase.co/functions/v1";
+
 // Social media links
 export const SOCIAL_LINKS = {
   facebook:  "https://www.facebook.com/profile.php?id=61589456675954",

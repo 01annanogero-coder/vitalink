@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import SEO from '../components/SEO'
 import SectionHeader from '../components/SectionHeader'
+import DistributorPayment from '../components/DistributorPayment'
 import {
   EMAILJS_PUBLIC_KEY,
   EMAILJS_SERVICE_ID,
@@ -126,6 +127,18 @@ export default function BeADistributor() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Registration Payment Plan */}
+      <section id="pay-registration" className="section-pad bg-white">
+        <div className="container-xl max-w-2xl mx-auto">
+          <SectionHeader
+            eyebrow="Ready to Join"
+            title="Pay Your Registration Fee — At Your Own Pace"
+            subtitle="Pay any amount toward your NeoLife starter kit via M-Pesa, whenever you can — no need to pay it all at once."
+          />
+          <DistributorPayment />
         </div>
       </section>
 

@@ -14,6 +14,7 @@ import Contact       from './pages/Contact'
 import BeADistributor from './pages/BeADistributor'
 import WellnessClub  from './pages/WellnessClub'
 import CartPage      from './pages/CartPage'
+import DistributorAdmin from './pages/DistributorAdmin'
 import NotFound      from './pages/NotFound'
 
 // Scroll to top on route change
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/be-a-distributor"     element={<BeADistributor />} />
           <Route path="/wellness-club"        element={<WellnessClub />} />
           <Route path="/cart"                 element={<CartPage />} />
+          <Route path="/admin/distributors"   element={<DistributorAdmin />} />
           <Route path="*"                     element={<NotFound />} />
         </Routes>
       </main>
