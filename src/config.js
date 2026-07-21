@@ -20,8 +20,11 @@ export const SITE_URL = "https://vitalink.fyi";
 export const SITE_NAME = "Vitalink";
 export const DISTRIBUTOR_EMAIL = "vitalink@example.com"; // update with real email
 
-// Distributor registration payment backend (Supabase Edge Functions)
+// Distributor registration payment backend (Supabase)
+export const SUPABASE_URL = "https://hpypxmmcfxyhfvadxyxl.supabase.co";
+export const SUPABASE_ANON_KEY = "sb_publishable_sIwGRS3kPnji8j66t2hXnQ_5Jd_rbjW";
 export const DISTRIBUTOR_FUNCTIONS_URL = "https://hpypxmmcfxyhfvadxyxl.supabase.co/functions/v1";
+export const NEOLIFE_OFFICIAL_URL = "https://www.neolife.com/en-ke/home/";
 
 // Social media links
 export const SOCIAL_LINKS = {
