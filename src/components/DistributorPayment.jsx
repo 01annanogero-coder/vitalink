@@ -34,6 +34,7 @@ export default function DistributorPayment() {
   const [signinEmail, setSigninEmail] = useState('')
   const [amount, setAmount] = useState('')
   const [checkoutRequestId, setCheckoutRequestId] = useState(null)
+  const [showFeeInfo, setShowFeeInfo] = useState(false)
   const pollRef = useRef(null)
 
   // On mount: check if we returned from a magic-link click (Supabase auto-detects the session
@@ -314,9 +315,24 @@ export default function DistributorPayment() {
                     <span>KES {enteredAmt.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between text-muted">
-                    <span>M-Pesa processing fee (Safaricom's own charge, not ours)</span>
+                    <span className="flex items-center gap-1">
+                      M-Pesa processing fee
+                      <button
+                        type="button"
+                        onClick={() => setShowFeeInfo(v => !v)}
+                        className="w-4 h-4 rounded-full bg-gray-200 text-gray-600 text-[10px] font-bold flex items-center justify-center hover:bg-gray-300 transition-colors"
+                        aria-label="Why is there a fee?"
+                      >
+                        ?
+                      </button>
+                    </span>
                     <span>KES {previewFee.toLocaleString()}</span>
                   </div>
+                  {showFeeInfo && (
+                    <p className="text-xs text-muted bg-white rounded-lg p-3 leading-relaxed">
+                      This is Safaricom's own charge for collecting the payment on M-Pesa — not a fee we add. NeoLife receives your full contribution amount; we simply pass Safaricom's transaction cost on transparently instead of hiding it in the price. It's roughly 0.5% of your payment, capped at KES 200.
+                    </p>
+                  )}
                   <div className="flex justify-between font-semibold text-forest-700 border-t border-gray-200 pt-1.5 mt-1.5">
                     <span>You'll be asked to confirm</span>
                     <span>KES {(enteredAmt + previewFee).toLocaleString()}</span>
