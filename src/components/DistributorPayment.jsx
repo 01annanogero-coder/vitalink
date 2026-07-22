@@ -86,7 +86,7 @@ export default function DistributorPayment() {
       return
     }
     if (!/^(0|\+?254)(7|1)\d{8}$/.test(applyForm.phone.replace(/\s+/g, ''))) {
-      setError('Please enter a valid Kenyan phone number (e.g. 07XX XXX XXX).')
+      setError('Please enter a valid 10-digit Kenyan phone number (e.g. 07XX XXX XXX or 01XX XXX XXX).')
       return
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(applyForm.email.trim())) {
@@ -229,7 +229,20 @@ export default function DistributorPayment() {
                     <div>
                       <label htmlFor="ap-phone" className="block text-xs font-semibold text-navy mb-1.5">M-Pesa Phone Number *</label>
                       <input id="ap-phone" value={applyForm.phone} onChange={e => setApplyForm(f => ({ ...f, phone: e.target.value }))}
-                        placeholder="07XX XXX XXX" className="input-field" />
+                        placeholder="07XX XXX XXX or 01XX XXX XXX" className="input-field" />
+                      {(() => {
+                        const digits = applyForm.phone.replace(/\D/g, '')
+                        if (!digits) return null
+                        const expected = digits.startsWith('254') ? 12 : 10
+                        if (digits.length === expected) return null
+                        return (
+                          <p className="text-xs text-amber-600 mt-1">
+                            {digits.length < expected
+                              ? `${expected - digits.length} more digit${expected - digits.length > 1 ? 's' : ''} needed`
+                              : `${digits.length - expected} digit${digits.length - expected > 1 ? 's' : ''} too many — Kenyan numbers are 10 digits (e.g. 0714... or 0114...)`}
+                          </p>
+                        )
+                      })()}
                     </div>
                     <div>
                       <label htmlFor="ap-email" className="block text-xs font-semibold text-navy mb-1.5">Email *</label>
