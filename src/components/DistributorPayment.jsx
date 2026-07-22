@@ -24,8 +24,10 @@ function calcFee(goalAmount, rate, cap) {
 }
 
 export default function DistributorPayment() {
-  // stage: 'apply' | 'check-email' | 'pay' | 'polling' | 'success'
-  const [stage, setStage] = useState('apply')
+  // stage: 'verifying' | 'apply' | 'check-email' | 'pay' | 'polling' | 'success'
+  // Starts on 'verifying' so a magic-link click always shows an explicit loading state
+  // instead of silently falling back to the apply screen while Supabase parses the URL.
+  const [stage, setStage] = useState('verifying')
   const [mode, setMode] = useState('new') // 'new' | 'signin' (toggles the initial card)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -35,35 +37,68 @@ export default function DistributorPayment() {
   const [amount, setAmount] = useState('')
   const [checkoutRequestId, setCheckoutRequestId] = useState(null)
   const [showFeeInfo, setShowFeeInfo] = useState(false)
+  const [justVerified, setJustVerified] = useState(false)
   const pollRef = useRef(null)
 
-  // On mount: check if we returned from a magic-link click (Supabase auto-detects the session
-  // from the URL hash). If so, either claim a brand-new application or look up an existing one.
+  // Handles both cases: returning from a magic-link click, and a plain page load with no session.
+  // Uses onAuthStateChange (not a one-off getSession() call) because Supabase parses the
+  // magic-link tokens out of the URL asynchronously — a single getSession() call on mount can
+  // race ahead of that and come back empty even when the link was valid.
   useEffect(() => {
-    const init = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      if (!session) return
+    let handled = false
 
+    const handleSession = async (session) => {
+      if (handled) return
+      handled = true
       const pendingCode = localStorage.getItem(PENDING_CLAIM_KEY)
       setLoading(true)
       try {
         if (pendingCode) {
           const data = await callFn('distributor-claim', { application_code: pendingCode }, session.access_token)
           localStorage.removeItem(PENDING_CLAIM_KEY)
+          setJustVerified(true)
           await refreshAfterAuth(session.access_token, data.application_code)
         } else {
           const data = await callFn('distributor-my-application', {}, session.access_token)
           setApplication(data)
+          setJustVerified(true)
           setStage(data.disbursed_status === 'IN_PROGRESS' ? 'pay' : 'success')
         }
       } catch (err) {
         setError(err.message)
+        setStage('apply')
       } finally {
         setLoading(false)
       }
     }
-    init()
-    return () => clearInterval(pollRef.current)
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'INITIAL_SESSION') {
+        if (session) {
+          handleSession(session)
+        } else if (!handled) {
+          handled = true
+          setStage('apply')
+        }
+      } else if (event === 'SIGNED_IN' && session) {
+        handleSession(session)
+      }
+    })
+
+    // Safety net: if Supabase's own auth-state events never fire (e.g. blocked storage,
+    // unexpected client issue), don't leave the visitor staring at a spinner forever.
+    const fallbackTimer = setTimeout(() => {
+      if (!handled) {
+        handled = true
+        setStage('apply')
+      }
+    }, 6000)
+
+    return () => {
+      authListener.subscription.unsubscribe()
+      clearTimeout(fallbackTimer)
+      clearInterval(pollRef.current)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -150,6 +185,7 @@ export default function DistributorPayment() {
         application_code: application.application_code,
         goal_amount: amt,
       })
+      setJustVerified(false)
       setCheckoutRequestId(data.checkout_request_id)
       setStage('polling')
       startPolling(data.checkout_request_id)
@@ -201,6 +237,15 @@ export default function DistributorPayment() {
   return (
     <div>
       <div className="bg-white rounded-2xl shadow-card overflow-hidden">
+        {/* ── Stage: Verifying (initial check / magic-link landing) ──── */}
+        {stage === 'verifying' && (
+          <div className="p-10 text-center">
+            <div className="w-14 h-14 mx-auto mb-5 rounded-full border-4 border-mint border-t-forest-700 animate-spin" />
+            <h3 className="text-lg font-serif font-semibold text-forest-700 mb-2">Confirming Your Email…</h3>
+            <p className="text-muted text-sm">Just a moment while we verify your link and load your application.</p>
+          </div>
+        )}
+
         {/* ── Stage: Apply / Sign in ──────────────────────────── */}
         {stage === 'apply' && (
           <div className="p-8">
@@ -297,6 +342,12 @@ export default function DistributorPayment() {
         {/* ── Stage: Pay ──────────────────────────────────────── */}
         {stage === 'pay' && application && (
           <div className="p-8">
+            {justVerified && (
+              <div className="flex items-center gap-2 bg-mint/50 text-forest-700 text-sm font-medium rounded-lg px-4 py-3 mb-5">
+                <CheckIcon className="w-4 h-4 flex-shrink-0" />
+                Email confirmed — you're all set to continue paying.
+              </div>
+            )}
             <div className="flex items-center justify-between mb-1">
               <h3 className="text-xl font-serif font-semibold text-forest-700">Your Payment Plan</h3>
               <span className="text-xs font-mono text-muted bg-gray-50 px-2 py-1 rounded">{application.application_code}</span>
