@@ -109,6 +109,10 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-white/50 text-xs">
           <p>© {year} Vitalink Kenya. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link to="/privacy-policy" className="hover:text-leaf transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-leaf transition-colors">Terms of Service</Link>
+          </div>
           <p>
             NeoLife products are distributed by independent distributors. This site is not the official NeoLife website.
           </p>

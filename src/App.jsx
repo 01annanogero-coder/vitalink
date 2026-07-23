@@ -15,6 +15,8 @@ import BeADistributor from './pages/BeADistributor'
 import WellnessClub  from './pages/WellnessClub'
 import CartPage      from './pages/CartPage'
 import DistributorAdmin from './pages/DistributorAdmin'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 import NotFound      from './pages/NotFound'
 
 // Scroll to top on route change
@@ -41,6 +43,8 @@ export default function App() {
           <Route path="/wellness-club"        element={<WellnessClub />} />
           <Route path="/cart"                 element={<CartPage />} />
           <Route path="/admin/distributors"   element={<DistributorAdmin />} />
+          <Route path="/privacy-policy"       element={<PrivacyPolicy />} />
+          <Route path="/terms"                element={<TermsOfService />} />
           <Route path="*"                     element={<NotFound />} />
         </Routes>
       </main>

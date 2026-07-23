@@ -7,4 +7,6 @@
   <url><loc>https://vitalink.fyi/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vitalink.fyi/be-a-distributor</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitalink.fyi/wellness-club</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vitalink.fyi/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://vitalink.fyi/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

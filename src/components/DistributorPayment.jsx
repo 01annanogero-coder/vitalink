@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { DISTRIBUTOR_FUNCTIONS_URL, NEOLIFE_OFFICIAL_URL, WHATSAPP_NUMBER } from '../config'
 
@@ -302,6 +303,12 @@ export default function DistributorPayment() {
                   </div>
                   <p className="text-xs text-muted">
                     We'll email you a secure link (no password needed) so you can safely come back and continue paying from any device.
+                  </p>
+                  <p className="text-xs text-muted">
+                    By continuing, you agree to our{' '}
+                    <Link to="/terms" target="_blank" className="text-forest-700 underline">Terms of Service</Link>{' '}
+                    and{' '}
+                    <Link to="/privacy-policy" target="_blank" className="text-forest-700 underline">Privacy Policy</Link>.
                   </p>
                   {error && <p className="text-red-600 text-sm bg-red-50 rounded-lg p-3">{error}</p>}
                   <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3.5 disabled:opacity-60 disabled:cursor-not-allowed">
