@@ -456,7 +456,7 @@ export default function DistributorPayment() {
           className="flex-1 bg-white rounded-xl border border-gray-100 p-4 hover:border-forest-700 transition-colors text-center"
         >
           <p className="font-medium text-navy mb-0.5">Not sure this is legitimate?</p>
-          <p className="text-forest-700 underline">Visit NeoLife's official website</p>
+          <p className="text-forest-700 underline">Visit our official NeoLife profile</p>
         </a>
         <a
           href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi, I have a question or issue about my distributor registration payment.')}`}

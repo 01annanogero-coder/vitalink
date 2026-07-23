@@ -22,7 +22,7 @@ export default function TermsOfService() {
               <p>
                 Vitalink is an independent NeoLife distributor operating in Kenya. We are not NeoLife International
                 and this is not NeoLife's official website. You can always verify NeoLife directly at{' '}
-                <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">{NEOLIFE_OFFICIAL_URL}</a>.
+                <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">our official NeoLife distributor profile</a>.
                 By using this site, you agree to these Terms and our{' '}
                 <Link to="/privacy-policy" className="text-forest-700 underline">Privacy Policy</Link>.
               </p>
@@ -120,7 +120,7 @@ export default function TermsOfService() {
               </ul>
               <p className="text-sm text-muted mt-3">
                 Concerns about NeoLife products or your official distributor status specifically can also be raised
-                with NeoLife directly via <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">NeoLife's official website</a>.
+                with NeoLife directly via <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">our official NeoLife distributor profile</a>.
               </p>
             </Section>
 

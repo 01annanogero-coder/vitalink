@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
               <p>
                 Vitalink ("we", "us", "our") is an independent NeoLife distributor site operating in Kenya.
                 We are not NeoLife International, and this website is not NeoLife's official site — you can
-                always verify NeoLife directly at <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">{NEOLIFE_OFFICIAL_URL}</a>.
+                always verify NeoLife directly at <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">our official NeoLife distributor profile</a>.
               </p>
               <p>
                 This policy explains what personal information we collect through vitalink.fyi, why we collect
@@ -119,7 +119,7 @@ export default function PrivacyPolicy() {
               </ul>
               <p className="text-sm text-muted mt-3">
                 You can also raise a concern directly with NeoLife's official support if it relates to a product or
-                your official distributor status, via <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">NeoLife's official website</a>.
+                your official distributor status, via <a href={NEOLIFE_OFFICIAL_URL} target="_blank" rel="noopener noreferrer" className="text-forest-700 underline">our official NeoLife distributor profile</a>.
               </p>
             </Section>
 
